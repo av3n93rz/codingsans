@@ -8,7 +8,7 @@ import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import {search} from '../core/apiCore'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import {Results, SearchState} from '../core/interfaces'
+import {SearchResults, SearchState} from '../core/interfaces'
 import {SearchReducer} from '../core/reducers'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -125,7 +125,7 @@ const SearchBar = () => {
             >
               <Paper>
                 {searchRes.loading && <div className={classes.loading}><CircularProgress/></div>}
-                {searchRes && searchRes.results.map((i:Results)=>(
+                {searchRes && searchRes.results.map((i:SearchResults)=>(
                   <Link href={`/brewery/${i.id}`} key={i.id}>
                     <MenuItem onClick={handleClickAway}>{i.name}</MenuItem>
                   </Link>

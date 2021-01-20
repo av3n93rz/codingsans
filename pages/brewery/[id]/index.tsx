@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {Container} from '@material-ui/core';
+import ErrorPage from 'next/error'
 import Link from 'next/link'
 import moment from 'moment'
 import Image from 'next/image'
@@ -24,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '25px'
   },
   link:{
-    cursor: 'pointer'
+    cursor: 'pointer',
+    textDecoration: 'underline',
+    textTransform: 'lowercase',
   },
   updated:{
     textAlign: 'center',
@@ -44,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const index = (details:BreweryInfo) => {
+  if(details.error){
+    return <ErrorPage statusCode={details.error}/>
+  }
   const classes = useStyles();
 
   return (
@@ -134,7 +140,7 @@ const index = (details:BreweryInfo) => {
 }
 
 index.getInitialProps = async (details:object) => {
-  return details
+    return details
 }
 
 export default GetBreweryDetails(index)

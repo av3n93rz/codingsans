@@ -1,7 +1,7 @@
 import {Reducer} from 'react'
 import {InitialState, IssuesAction, SearchState, SearchAction} from './interfaces'
 
-export const breweriesReducer: Reducer<InitialState, IssuesAction> = (pageData, action)=> {
+export const BreweriesReducer: Reducer<InitialState, IssuesAction> = (pageData, action)=> {
   switch (action.type) {
     case 'request':
       return {breweries: [], loading:true}

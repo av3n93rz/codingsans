@@ -13,10 +13,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TablePagination from '@material-ui/core/TablePagination';
 import {listBreweries} from '../../core/apiCore'
-import {breweriesReducer} from '../../core/reducers'
+import {BreweriesReducer} from '../../core/reducers'
 import {InitialState, BreweryInfo} from '../../core/interfaces'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useRouter } from 'next/router'
+import ErrorPage from 'next/error'
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -38,13 +40,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const index = ({breweries, page}: {breweries:BreweryInfo[]; page: number}) => {
+  if(breweries.length === 0){
+    return <ErrorPage statusCode={404}/>
+  }
+
   const classes = useStyles();
   const router = useRouter()
+  
   const [pageNumber, setPageNumber] = useState<number>(page-1 | 0);
   const [initialRender, setInitialRender] = useState<boolean>(true);
-  const initialState:InitialState = { breweries: breweries, loading: false}
-  const [pageData, dispatchData] = useReducer(breweriesReducer, initialState);
 
+  const initialState:InitialState = { breweries: breweries, loading: false}
+  const [pageData, dispatchData] = useReducer(BreweriesReducer, initialState);
   useEffect(()=>{
     if(!initialRender){
       router.push(`/breweries/?page=${pageNumber+1}`, undefined, { shallow: true })
@@ -102,6 +109,7 @@ const index = ({breweries, page}: {breweries:BreweryInfo[]; page: number}) => {
           rowsPerPage={10}
           page={pageNumber}
           onChangePage={handleChangePage}
+          nextIconButtonProps={{disabled: pageData.breweries.length < 10 ? true:false}}
         />
       </Container>  
     </div>

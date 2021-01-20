@@ -9,36 +9,37 @@ export interface IssuesAction {
 }
 
 export interface BreweryInfo {
-  address_2: string | null;
-  address_3: string | null;
-  brewery_type: string | null;
-  city: string | null;
-  country: string | null;
-  county_province: string | null;
-  created_at: string;
   id: number;
-  latitude: string | null;
-  longitude: string | null;
   name: string;
-  phone: string | null;
-  postal_code: string | null;
-  state: string | null;
-  street: string | null;
+  created_at: string;
   updated_at: string;
-  website_url: string | null;
+  address_2?: string;
+  address_3?: string;
+  brewery_type?: string;
+  city?: string
+  country?: string
+  county_province?: string;
+  latitude?: string;
+  longitude?: string;
+  phone?: string;
+  postal_code?: string;
+  state?: string;
+  street?: string;
+  website_url?: string;
+  error?: number;
 }
 
-export interface Results {
+export interface SearchResults {
   id: number;
   name: string;
 }
 
 export interface SearchAction {
   type: string;
-  payload: Results[];
+  payload: SearchResults[];
 }
 
 export interface SearchState {
-  results: Results[];
+  results: SearchResults[];
   loading: boolean;
 }
