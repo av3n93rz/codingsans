@@ -6,8 +6,10 @@ Navigate to the application folder in your terminal then run the following comma
 npm i
 
 npm run build
-
 npm run start
+
+#or run it in developer mod
+npm run dev
 ```
 
 ## Deployed on Vercel
