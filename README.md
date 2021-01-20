@@ -14,5 +14,5 @@ npm run dev
 
 ## Deployed on Vercel
 
-Check out a running version of [https://codingsans-tau.vercel.app/](this application) on Vercel!
+Check out a running version of [this application](https://codingsans-tau.vercel.app/) on Vercel!
 
