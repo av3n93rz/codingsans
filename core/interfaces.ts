@@ -26,7 +26,6 @@ export interface BreweryInfo {
   state?: string;
   street?: string;
   website_url?: string;
-  error?: number;
 }
 
 export interface SearchResults {

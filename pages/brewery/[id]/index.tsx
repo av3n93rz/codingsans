@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const index = (details:BreweryInfo) => {
-  if(details.error){
-    return <ErrorPage statusCode={details.error}/>
+  if(!details.id){
+    return <ErrorPage statusCode={404}/>
   }
   const classes = useStyles();
 
